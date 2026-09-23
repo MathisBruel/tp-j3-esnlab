@@ -3,24 +3,24 @@
     "id": "boot-dc01",
     "test": "Boot VM DC01",
     "attendu": "Démarrage complet, réseau opérationnel",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "hostname=DC01, LastBootUpTime=23/09/2026 23:49:05, IPv4=192.168.10.10",
+    "verdict": "PASS",
     "fichier": "evidence/boot-dc01.png"
   },
   {
     "id": "boot-file01",
     "test": "Boot VM FILE01",
     "attendu": "Démarrage complet, réseau opérationnel",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "hostname=FILE01, LastBootUpTime=24/09/2026 00:04:39, IPv4=192.168.10.20",
+    "verdict": "PASS",
     "fichier": "evidence/boot-file01.png"
   },
   {
     "id": "boot-client01",
     "test": "Boot VM CLIENT01",
     "attendu": "Démarrage complet, réseau opérationnel",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "hostname=CLIENT01, LastBootUpTime=23/09/2026 23:57:18, IPv4=192.168.10.100",
+    "verdict": "PASS",
     "fichier": "evidence/boot-client01.png"
   },
   {
@@ -35,56 +35,56 @@
     "id": "file01-domain-join",
     "test": "FILE01 membre du domaine",
     "attendu": "Get-ADComputer FILE01 réussit depuis DC01",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "Get-ADComputer FILE01 : DistinguishedName=CN=FILE01,CN=Computers,DC=esnlab,DC=local, DNSHostName=FILE01.esnlab.local, Enabled=True",
+    "verdict": "PASS",
     "fichier": "evidence/file01-adcomputer.png"
   },
   {
     "id": "smb-alice-pass",
     "test": "Accès SMB Alice -> \\\\FILE01\\Compta",
     "attendu": "PASS (membre de G-Compta)",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "dir \\\\FILE01\\Compta réussi via runas alice — contenu du dossier listé",
+    "verdict": "PASS",
     "fichier": "evidence/smb-alice.png"
   },
   {
     "id": "smb-bob-deny",
     "test": "Accès SMB Bob -> \\\\FILE01\\Compta",
     "attendu": "DENY (non membre de G-Compta)",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "dir \\\\FILE01\\Compta refusé via runas bob — Accès refusé",
+    "verdict": "DENY",
     "fichier": "evidence/smb-bob.png"
   },
   {
     "id": "client01-domain-join",
     "test": "CLIENT01 joint au domaine",
     "attendu": "Poste visible dans AD, ouverture de session ESNLAB",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "Get-ADComputer CLIENT01 : DistinguishedName=CN=CLIENT01,OU=PostesClients,DC=esnlab,DC=local, DNSHostName=CLIENT01.esnlab.local, Enabled=True",
+    "verdict": "PASS",
     "fichier": "evidence/client01-join.png"
   },
   {
     "id": "dhcp-client",
     "test": "Bail DHCP CLIENT01",
     "attendu": "IP dans le scope, gateway/DNS/domaine cohérents (options 003/006/015)",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "Get-DhcpServerv4Lease : IPAddress=192.168.10.100, ScopeId=192.168.10.0, HostName=CLIENT01.esnlab.local, AddressState=Active ; côté client : gateway=192.168.10.1, DNS=192.168.10.10, suffixe=esnlab.local",
+    "verdict": "PASS",
     "fichier": "evidence/dhcp-client01.png"
   },
   {
     "id": "gpo-applied",
     "test": "GPO appliquée sur CLIENT01",
     "attendu": "gpresult confirme l'application (pas seulement le lien)",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "gpresult /r pour ESNLAB\\alice : GPO-Lecteur-Compta listée sous 'Objets Stratégie de groupe appliqués' après ajout du loopback processing (mode Fusion) sur l'OU PostesClients",
+    "verdict": "PASS",
     "fichier": "evidence/gpresult-client01.png"
   },
   {
     "id": "inter-vlan",
     "test": "Routage inter-VLAN (VLAN10 -> VLAN20)",
     "attendu": "PASS via R1",
-    "observe": null,
-    "verdict": "PENDING",
+    "observe": "ping 192.168.2.140 depuis PC10 : 3/4 puis 4/4 après résolution ARP, TTL=127 (1 saut via R1)",
+    "verdict": "PASS",
     "fichier": "evidence/inter-vlan-ping.png"
   }
 ]
