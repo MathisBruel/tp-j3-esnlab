@@ -1,0 +1,96 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram name="Topologie J3 - esnlab.local" id="topo-j3">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="Topologie cible - TP J3 - domaine esnlab.local" style="text;html=1;fontSize=18;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="600" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- VLAN10 zone -->
+        <mxCell id="vlan10zone" value="VLAN 10 - Utilisateurs&lt;br&gt;192.168.2.0/25 - GW .1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#82b366;verticalAlign=top;align=left;fontSize=11;spacingLeft=6;spacingTop=6;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="100" y="280" width="260" height="260" as="geometry" />
+        </mxCell>
+
+        <!-- VLAN20 note zone (reserved, no host yet) -->
+        <mxCell id="vlan20zone" value="VLAN 20 - Serveurs (reserve)&lt;br&gt;192.168.2.128/25 - GW .129&lt;br&gt;Aucun hote assigne pour l'instant" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#d6b656;verticalAlign=top;align=left;fontSize=11;spacingLeft=6;spacingTop=6;fontColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="640" y="70" width="240" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- Systems network zone -->
+        <mxCell id="syszone" value="Reseau systemes existant (J2)&lt;br&gt;192.168.10.0/24 - domaine esnlab.local" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#6c8ebf;verticalAlign=top;align=left;fontSize=11;spacingLeft=6;spacingTop=6;fontColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="600" y="190" width="340" height="250" as="geometry" />
+        </mxCell>
+
+        <!-- R1 -->
+        <mxCell id="r1" value="R1&lt;br&gt;Routeur inter-VLAN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="90" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- SW2 -->
+        <mxCell id="sw2" value="SW2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="210" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- SW1 -->
+        <mxCell id="sw1" value="SW1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="330" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- CLIENT01 -->
+        <mxCell id="client01" value="CLIENT01&lt;br&gt;DHCP - joint au domaine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="450" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Switch systemes -->
+        <mxCell id="swsys" value="Switch reseau systemes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="210" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- DC01 -->
+        <mxCell id="dc01" value="DC01&lt;br&gt;192.168.10.10/24&lt;br&gt;AD DS + DNS + DHCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="330" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- FILE01 -->
+        <mxCell id="file01" value="FILE01&lt;br&gt;192.168.10.20/24&lt;br&gt;SMB (partage Compta)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="330" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" value="sous-interfaces&lt;br&gt;g0/0.10 / g0/0.20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;" edge="1" parent="1" source="r1" target="sw2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" value="trunk 802.1Q&lt;br&gt;allowed VLAN 10,20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;" edge="1" parent="1" source="sw2" target="sw1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" value="access VLAN10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;" edge="1" parent="1" source="sw1" target="client01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" value="interface vers&lt;br&gt;reseau systemes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;" edge="1" parent="1" source="r1" target="swsys">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="swsys" target="dc01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="swsys" target="file01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Warning note -->
+        <mxCell id="note" value="A verifier avec le formateur : DC01/FILE01 sont adresses en 192.168.10.0/24 (reseau systemes J2) alors que la VLAN20 &quot;Serveurs&quot; du plan est en 192.168.2.128/25. R1 doit donc router entre 3 reseaux (VLAN10, VLAN20, reseau systemes) - a confirmer que c'est bien l'architecture attendue." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="580" width="860" height="80" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

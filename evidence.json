@@ -1,0 +1,90 @@
+[
+  {
+    "id": "boot-dc01",
+    "test": "Boot VM DC01",
+    "attendu": "Démarrage complet, réseau opérationnel",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/boot-dc01.png"
+  },
+  {
+    "id": "boot-file01",
+    "test": "Boot VM FILE01",
+    "attendu": "Démarrage complet, réseau opérationnel",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/boot-file01.png"
+  },
+  {
+    "id": "boot-client01",
+    "test": "Boot VM CLIENT01",
+    "attendu": "Démarrage complet, réseau opérationnel",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/boot-client01.png"
+  },
+  {
+    "id": "dns-domain-srv",
+    "test": "Résolution DNS du domaine + enregistrements SRV LDAP/Kerberos",
+    "attendu": "esnlab.local résolu vers DC01, SRV LDAP/Kerberos présents",
+    "observe": "esnlab.local -> 192.168.10.10 ; SRV _ldap._tcp et _kerberos._tcp -> dc01.esnlab.local",
+    "verdict": "PASS",
+    "fichier": "evidence/jalon2-dns-srv.png"
+  },
+  {
+    "id": "file01-domain-join",
+    "test": "FILE01 membre du domaine",
+    "attendu": "Get-ADComputer FILE01 réussit depuis DC01",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/file01-adcomputer.png"
+  },
+  {
+    "id": "smb-alice-pass",
+    "test": "Accès SMB Alice -> \\\\FILE01\\Compta",
+    "attendu": "PASS (membre de G-Compta)",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/smb-alice.png"
+  },
+  {
+    "id": "smb-bob-deny",
+    "test": "Accès SMB Bob -> \\\\FILE01\\Compta",
+    "attendu": "DENY (non membre de G-Compta)",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/smb-bob.png"
+  },
+  {
+    "id": "client01-domain-join",
+    "test": "CLIENT01 joint au domaine",
+    "attendu": "Poste visible dans AD, ouverture de session ESNLAB",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/client01-join.png"
+  },
+  {
+    "id": "dhcp-client",
+    "test": "Bail DHCP CLIENT01",
+    "attendu": "IP dans le scope, gateway/DNS/domaine cohérents (options 003/006/015)",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/dhcp-client01.png"
+  },
+  {
+    "id": "gpo-applied",
+    "test": "GPO appliquée sur CLIENT01",
+    "attendu": "gpresult confirme l'application (pas seulement le lien)",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/gpresult-client01.png"
+  },
+  {
+    "id": "inter-vlan",
+    "test": "Routage inter-VLAN (VLAN10 -> VLAN20)",
+    "attendu": "PASS via R1",
+    "observe": null,
+    "verdict": "PENDING",
+    "fichier": "evidence/inter-vlan-ping.png"
+  }
+]
