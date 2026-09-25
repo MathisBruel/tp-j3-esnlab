@@ -85,11 +85,6 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
-        <!-- Warning note -->
-        <mxCell id="note" value="A verifier avec le formateur : DC01/FILE01 sont adresses en 192.168.10.0/24 (reseau systemes J2) alors que la VLAN20 &quot;Serveurs&quot; du plan est en 192.168.2.128/25. R1 doit donc router entre 3 reseaux (VLAN10, VLAN20, reseau systemes) - a confirmer que c'est bien l'architecture attendue." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
-          <mxGeometry x="80" y="580" width="860" height="80" as="geometry" />
-        </mxCell>
-
       </root>
     </mxGraphModel>
   </diagram>
